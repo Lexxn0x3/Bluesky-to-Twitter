@@ -1,0 +1,7 @@
+requests
+requests_oauthlib
+flask
+beautifulsoup4
+opencv-python
+diskcache
+toml
