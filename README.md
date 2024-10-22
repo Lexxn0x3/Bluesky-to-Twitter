@@ -44,6 +44,7 @@ access_token_secret = "YOUR_TWITTER_ACCESS_TOKEN_SECRET"
 username = "lexxvr.bsky.social"  # Your Bluesky username 🐾 (example: lexxvr.bsky.social)
 password = "your_bluesky_password"  # Your Bluesky password 🐾 (shhh... keep this a secret!)
 identifier = "youremail@domain.com"  # Your Bluesky identifier (usually your email)
+refresh = 300 # Fetch new posts every 5 minutes
 ```
 
 ### 4. Get Twitter API Keys 🐦
