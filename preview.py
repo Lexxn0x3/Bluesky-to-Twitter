@@ -179,5 +179,5 @@ def close_cache(exception):
     cache.close()
 
 if __name__ == "__main__":
-    app.run(host="10.18.40.163", debug=False, port=3030)
+    app.run(host="0.0.0.0", debug=False, port=3030)
 
