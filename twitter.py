@@ -3,12 +3,7 @@ from requests_oauthlib import OAuth1
 import os
 from config import Config
 
-auth = OAuth1(
-    Config.TWITTER_API_KEY,
-    Config.TWITTER_API_SECRET_KEY,
-    Config.TWITTER_ACCESS_TOKEN,
-    Config.TWITTER_ACCESS_TOKEN_SECRET
-)
+auth = None 
 # Step 1: Upload image to Twitter
 def download_media(media_url):
     """
@@ -39,7 +34,7 @@ def upload_media(media_url):
     # Twitter API endpoint for media upload (you may need to adjust this)
     url = "https://upload.twitter.com/1.1/media/upload.json"
 
-    response = requests.post(url, files=files, auth=auth)
+    response = requests.post(url, files=files, auth=get_auth())
 
     if response.status_code == 200:
         media_id = response.json().get("media_id_string")
@@ -52,9 +47,6 @@ def convert_bluesky_to_preview_url(bluesky_url):
     Converts a Bluesky post URL to your custom preview URL format.
     """
     try:
-        # Example Bluesky URL: https://bsky.app/profile/centralscruty.bsky.social/post/3l6zrfcjs2y2t
-    # Desired preview URL: https://bluesky.owo.nexus/preview/centralscruty.bsky.social/post/3l6zrfcjs2y2t
-
         # Split the Bluesky URL to extract the handle and post ID
         parts = bluesky_url.split('/')
         handle = parts[4]  # The handle is in the 5th position
@@ -88,7 +80,7 @@ def post_tweet_with_media_and_quote(text, media_id=None, quoted_url=None):
         else:
             print(f"Failed to convert quoted Bluesky URL: {quoted_url}")
 
-    response = requests.post(tweet_url, json=payload, auth=auth)
+    response = requests.post(tweet_url, json=payload, auth=get_auth())
 
     if response.status_code == 201:
         print("Tweet posted successfully:", response.json())
@@ -117,10 +109,18 @@ def comment_with_original_post(tweet_id, post_data):
         }
     }
 
-    response = requests.post(tweet_url, json=payload, auth=auth)
+    response = requests.post(tweet_url, json=payload, auth=get_auth())
 
     if response.status_code == 201:
         print(f"Comment posted successfully: {response.json()}")
     else:
         print(f"Failed to post comment. Status code: {response.status_code}, Response: {response.text}")
+
+def get_auth():
+    return  OAuth1(
+    Config.TWITTER_API_KEY,
+    Config.TWITTER_API_SECRET_KEY,
+    Config.TWITTER_ACCESS_TOKEN,
+    Config.TWITTER_ACCESS_TOKEN_SECRET
+    )
 

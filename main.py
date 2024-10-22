@@ -4,6 +4,8 @@ from time import sleep
 from bluesky import get_bsky_posts
 from twitter import post_tweet_with_media_and_quote, upload_media, comment_with_original_post
 from config import Config
+from requests_oauthlib import OAuth1
+
 
 # File to store the last processed posts
 LAST_POSTS_FILE = 'last_posts.json'
@@ -63,6 +65,7 @@ def process_posts_and_tweet(new_posts):
 
 def main():
     Config.init()
+    
     while(True): 
     # Step 1: Load the last processed posts
         last_posts = load_last_posts()

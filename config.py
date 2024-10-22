@@ -10,8 +10,7 @@ class Config:
     BLUESKY_USERNAME = None
     BLUESKY_PASSWORD = None
     BLUESKY_IDENTIFIER = None
-    PREVIEW_HOST = None
-    PREVIEW_PORT = None
+    BLUESKY_REFRESH = None
 
     @classmethod
     def init(cls, config_path="config.toml"):
@@ -35,6 +34,7 @@ class Config:
         cls.BLUESKY_USERNAME = config_data['bluesky']['username']
         cls.BLUESKY_PASSWORD = config_data['bluesky']['password']
         cls.BLUESKY_IDENTIFIER = config_data['bluesky']['identifier']
+        cls.BLUESKY_REFRESH = config_data['bluesky']['refresh']
 
         cls.PREVIEW_HOST = config_data['preview']['host']
         cls.PREVIEW_PORT = config_data['preview']['port']
