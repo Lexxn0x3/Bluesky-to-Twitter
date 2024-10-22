@@ -36,9 +36,6 @@ class Config:
         cls.BLUESKY_IDENTIFIER = config_data['bluesky']['identifier']
         cls.BLUESKY_REFRESH = config_data['bluesky']['refresh']
 
-        cls.PREVIEW_HOST = config_data['preview']['host']
-        cls.PREVIEW_PORT = config_data['preview']['port']
-
         print("Configuration initialized successfully.")
 
 
