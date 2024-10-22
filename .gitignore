@@ -1,0 +1,5 @@
+/__pycache__/*
+/cache/*
+bsky_token.txt
+last_posts.json
+config.toml
